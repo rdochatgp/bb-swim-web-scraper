@@ -1,8 +1,7 @@
 name: Run web scraper2
 
 on:
-  pull_request:
-
+#  pull_request:
   schedule:
     - cron: '0 */2 * * *' # Runs every other hour
 
