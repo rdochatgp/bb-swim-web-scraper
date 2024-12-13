@@ -2,19 +2,19 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-base = "https://shop.fresch-freising.de"
-courses_url = base + "/courses/5"
+base = "https://www.boci-pru.com.hk/en/etf/wiseetf"
+courses_url = base + "/02825"
 
 # get website contents and parse html
 response = requests.get(courses_url)
 html = BeautifulSoup(response.text, 'html.parser')
 
-categories_html = html.find('section', {"id" : "Categories"})
-courses_html = categories_html.findChildren("div", id=re.compile('^Course-'))
+categories_html = html.find('div', {"id" : "cms_table_etf_nav"})
+# courses_html = categories_html.findChildren("div", id=re.compile('^Course-'))
 
 # create markdown string of courses
-courses_markdown = "# Babyschwimmen Kursübersicht"
-for c in courses_html:
+# courses_markdown = "# Babyschwimmen Wise"
+""" for c in courses_html:
     # parse information
     headline = c.find('h5', {"class" : "card-title"}).text
     text = c.find('p').text
@@ -25,10 +25,12 @@ for c in courses_html:
     text_stripped = re.sub(' +', ' ', text).strip()
     
     # append to markdown
-    courses_markdown += """
+"""
+    courses_markdown += categories_html
+"""
 ## {}
 [{}]({})
-""".format(headline_stripped, text_stripped, url)
+"""#.format(headline_stripped, text_stripped, url)
       
 # write markdown file
 with open("courses.md", "w") as courses_file:
