@@ -26,7 +26,7 @@ categories_html = html.find('div', {"id" : "cms_table_etf_nav"})
     
     # append to markdown
 """
-    courses_markdown += categories_html
+    courses_markdown = categories_html
 """
 ## {}
 [{}]({})
